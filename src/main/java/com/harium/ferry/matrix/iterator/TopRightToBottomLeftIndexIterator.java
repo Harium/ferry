@@ -26,7 +26,7 @@ public class TopRightToBottomLeftIndexIterator extends MatrixIndexIterator {
     }
 
     @Override
-    public int[] next() {
+    public Integer next() {
         currentX -= step;
 
         if (currentX < border) {
@@ -35,7 +35,7 @@ public class TopRightToBottomLeftIndexIterator extends MatrixIndexIterator {
             currentY += step;
         }
 
-        return new int[]{currentX, currentY};
+        return currentY * width + currentX;
     }
 
 }

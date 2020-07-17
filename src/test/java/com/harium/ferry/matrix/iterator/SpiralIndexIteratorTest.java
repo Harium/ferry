@@ -3,6 +3,7 @@ package com.harium.ferry.matrix.iterator;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.harium.ferry.matrix.iterator.IteratorTestUtil.next;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -23,11 +24,11 @@ public class SpiralIndexIteratorTest {
         iterator.setHeight(10);
 
         assertTrue(iterator.hasNext());
-        int[] next = iterator.next();
+        int[] next = next(iterator);
         assertEquals(0, next[0]);
         assertEquals(0, next[1]);
 
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(1, next[0]);
         assertEquals(0, next[1]);
     }
@@ -40,48 +41,48 @@ public class SpiralIndexIteratorTest {
         iterator.setHeight(10);
 
         assertTrue(iterator.hasNext());
-        int[] next = iterator.next();
+        int[] next = next(iterator);
         assertEquals(5, next[0]);
         assertEquals(5, next[1]);
 
         assertEquals(SpiralIndexIterator.DIRECTION_RIGHT, iterator.dir);
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(6, next[0]);
         assertEquals(5, next[1]);
 
         assertEquals(SpiralIndexIterator.DIRECTION_DOWN, iterator.dir);
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(6, next[0]);
         assertEquals(6, next[1]);
 
         assertEquals(SpiralIndexIterator.DIRECTION_LEFT, iterator.dir);
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(5, next[0]);
         assertEquals(6, next[1]);
 
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(4, next[0]);
         assertEquals(6, next[1]);
 
         assertEquals(SpiralIndexIterator.DIRECTION_UP, iterator.dir);
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(4, next[0]);
         assertEquals(5, next[1]);
 
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(4, next[0]);
         assertEquals(4, next[1]);
 
         assertEquals(SpiralIndexIterator.DIRECTION_RIGHT, iterator.dir);
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(5, next[0]);
         assertEquals(4, next[1]);
 
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(6, next[0]);
         assertEquals(4, next[1]);
 
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(7, next[0]);
         assertEquals(4, next[1]);
     }
@@ -95,23 +96,23 @@ public class SpiralIndexIteratorTest {
         iterator.setHeight(10);
 
         assertTrue(iterator.hasNext());
-        int[] next = iterator.next();
+        int[] next = next(iterator);
         assertEquals(5, next[0]);
         assertEquals(5, next[1]);
 
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(7, next[0]);
         assertEquals(5, next[1]);
 
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(7, next[0]);
         assertEquals(7, next[1]);
 
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(5, next[0]);
         assertEquals(7, next[1]);
 
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(3, next[0]);
         assertEquals(7, next[1]);
     }
@@ -125,32 +126,32 @@ public class SpiralIndexIteratorTest {
         iterator.setY(2);
 
         assertTrue(iterator.hasNext());
-        int[] next = iterator.next();
+        int[] next = next(iterator);
         assertEquals(3, next[0]);
         assertEquals(2, next[1]);
 
         assertTrue(iterator.hasNext());
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(4, next[0]);
         assertEquals(2, next[1]);
 
         assertTrue(iterator.hasNext());
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(4, next[0]);
         assertEquals(3, next[1]);
 
         assertTrue(iterator.hasNext());
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(3, next[0]);
         assertEquals(3, next[1]);
 
         assertTrue(iterator.hasNext());
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(2, next[0]);
         assertEquals(3, next[1]);
 
         assertTrue(iterator.hasNext());
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(2, next[0]);
         assertEquals(2, next[1]);
 

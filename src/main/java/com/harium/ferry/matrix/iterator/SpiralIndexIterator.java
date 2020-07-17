@@ -8,6 +8,8 @@ public class SpiralIndexIterator extends MatrixIndexIterator {
     static final short DIRECTION_LEFT = 3;
 
     short dir = DIRECTION_RIGHT;
+    // Horizontal
+    boolean orientationHorizontal = true;
 
     private int targetX;
     private int targetY;
@@ -43,7 +45,7 @@ public class SpiralIndexIterator extends MatrixIndexIterator {
     }
 
     @Override
-    public int[] next() {
+    public Integer next() {
         if (currentX != targetX || currentY != targetY) {
             currentX += dx;
             currentY += dy;
@@ -52,28 +54,54 @@ public class SpiralIndexIterator extends MatrixIndexIterator {
             dir++;
             dir %= 4;
             if (dir == DIRECTION_RIGHT) {
-                size++;
-                dx = step;
-                dy = 0;
-                targetX = currentX + size * step;
+                turnRight();
             } else if (dir == DIRECTION_DOWN) {
-                dx = 0;
-                dy = step;
-                targetY = currentY + size * step;
+                turnDown();
             } else if (dir == DIRECTION_LEFT) {
-                size++;
-                dx = -step;
-                dy = 0;
-                targetX = currentX - size * step;
+                turnLeft();
             } else if (dir == DIRECTION_UP) {
-                dx = 0;
-                dy = -step;
-                targetY = currentY - size * step;
+                turnUp();
             }
         }
 
-        return new int[]{currentX, currentY};
+        return currentY * width + currentX;
     }
 
+    private void turnRight() {
+        if (orientationHorizontal) {
+            size++;
+        }
+
+        dx = step;
+        dy = 0;
+        targetX = currentX + size * step;
+    }
+
+    private void turnLeft() {
+        if (orientationHorizontal) {
+            size++;
+        }
+        dx = -step;
+        dy = 0;
+        targetX = currentX - size * step;
+    }
+
+    private void turnDown() {
+        if (!orientationHorizontal) {
+            size++;
+        }
+        dx = 0;
+        dy = step;
+        targetY = currentY + size * step;
+    }
+
+    private void turnUp() {
+        if (!orientationHorizontal) {
+            size++;
+        }
+        dx = 0;
+        dy = -step;
+        targetY = currentY - size * step;
+    }
 
 }

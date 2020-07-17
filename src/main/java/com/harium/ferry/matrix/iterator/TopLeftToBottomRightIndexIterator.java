@@ -19,7 +19,7 @@ public class TopLeftToBottomRightIndexIterator extends MatrixIndexIterator {
     }
 
     @Override
-    public int[] next() {
+    public Integer next() {
         currentX += step;
 
         if (currentX >= width - border) {
@@ -28,7 +28,7 @@ public class TopLeftToBottomRightIndexIterator extends MatrixIndexIterator {
             currentY += step;
         }
 
-        return new int[]{currentX, currentY};
+        return currentY * width + currentX;
     }
 
 }

@@ -23,9 +23,9 @@ public abstract class MatrixIterable<T> implements Iterable<T> {
 
             @Override
             public T next() {
-                int[] index = indexIterator.next();
-                int i = index[0];
-                int j = index[1];
+                int index = indexIterator.next();
+                int i = index % indexIterator.getWidth();
+                int j = index / indexIterator.getWidth();
                 return data[j][i];
             }
         };

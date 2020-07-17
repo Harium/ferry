@@ -3,6 +3,7 @@ package com.harium.ferry.matrix.iterator;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.harium.ferry.matrix.iterator.IteratorTestUtil.next;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -23,11 +24,11 @@ public class TopRightToBottomLeftIndexIteratorTest {
         iterator.setHeight(10);
 
         assertTrue(iterator.hasNext());
-        int[] next = iterator.next();
+        int[] next = next(iterator);
         assertEquals(9, next[0]);
         assertEquals(0, next[1]);
 
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(8, next[0]);
         assertEquals(0, next[1]);
     }
@@ -40,11 +41,11 @@ public class TopRightToBottomLeftIndexIteratorTest {
         iterator.setHeight(10);
 
         assertTrue(iterator.hasNext());
-        int[] next = iterator.next();
+        int[] next = next(iterator);
         assertEquals(5, next[0]);
         assertEquals(5, next[1]);
 
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(4, next[0]);
         assertEquals(5, next[1]);
     }
@@ -58,15 +59,15 @@ public class TopRightToBottomLeftIndexIteratorTest {
         iterator.setHeight(10);
 
         assertTrue(iterator.hasNext());
-        int[] next = iterator.next();
+        int[] next = next(iterator);
         assertEquals(5, next[0]);
         assertEquals(5, next[1]);
 
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(2, next[0]);
         assertEquals(5, next[1]);
 
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(9, next[0]);
         assertEquals(5 + iterator.getStep(), next[1]);
     }
@@ -80,22 +81,22 @@ public class TopRightToBottomLeftIndexIteratorTest {
         iterator.setY(2);
 
         assertTrue(iterator.hasNext());
-        int[] next = iterator.next();
+        int[] next = next(iterator);
         assertEquals(3, next[0]);
         assertEquals(2, next[1]);
 
         assertTrue(iterator.hasNext());
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(2, next[0]);
         assertEquals(2, next[1]);
 
         assertTrue(iterator.hasNext());
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(3, next[0]);
         assertEquals(3, next[1]);
 
         assertTrue(iterator.hasNext());
-        next = iterator.next();
+        next = next(iterator);
         assertEquals(2, next[0]);
         assertEquals(3, next[1]);
 
