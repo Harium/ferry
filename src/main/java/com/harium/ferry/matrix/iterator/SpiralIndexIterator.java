@@ -40,27 +40,85 @@ public class SpiralIndexIterator extends MatrixIndexIterator {
 
     @Override
     public boolean hasNext() {
-        return ((currentY + dy >= border) && (currentY + dy < height - border) &&
-                (currentX + dx >= border) && (currentX + dx < width - border));
+        return ((currentY + dy > border) && (currentY + dy < height - border)) ||
+                ((currentX + dx > border) && (currentX + dx < width - border));
     }
 
     @Override
     public Integer next() {
+        // If didn't reach target move
         if (currentX != targetX || currentY != targetY) {
             currentX += dx;
             currentY += dy;
         }
-        if (currentX == targetX && currentY == targetY) {
-            dir++;
-            dir %= 4;
-            if (dir == DIRECTION_RIGHT) {
-                turnRight();
-            } else if (dir == DIRECTION_DOWN) {
-                turnDown();
-            } else if (dir == DIRECTION_LEFT) {
+
+        if (dir == DIRECTION_RIGHT) {
+            // If reached target rotate
+            if (currentX > width - 1 - border) {
+                // If currentX is out of bounds
+                swapOrientation();
+                // Rollback currentX
+                currentX -= dx;
+                // Flip Y
+                currentY = y + size;
+                // Rotate Left
                 turnLeft();
-            } else if (dir == DIRECTION_UP) {
+            } else if (currentX == targetX && currentY == targetY) {
+                turnDown();
+                /*if (!hasNext()) {
+                    return next();
+                }*/
+            }
+        } else if (dir == DIRECTION_DOWN) {
+            // If reached target rotate
+            if (currentY > height - 1 - border) {
+                // If currentX is out of bounds
+                swapOrientation();
+                // Rollback currentX
+                currentY -= dy;
+                // Flip X
+                currentX = x + (x - currentX);
+                // Rotate Up
                 turnUp();
+                return next();
+            } else if (currentX == targetX && currentY == targetY) {
+                turnLeft();
+                /*if (!hasNext()) {
+                    return next();
+                }*/
+            }
+        } else if (dir == DIRECTION_LEFT) {
+            // If reached target rotate
+            if (currentX < border) {
+                // If currentX is out of bounds
+                swapOrientation();
+                // Rollback currentX
+                currentX -= dx;
+                // Flip Y
+                currentY = y - step;
+                // Rotate Right
+                turnRight();
+                return next();
+            } else if (currentX == targetX && currentY == targetY) {
+                turnUp();
+                /*if (!hasNext()) {
+                    return next();
+                }*/
+            }
+        } else if (dir == DIRECTION_UP) {
+            // If reached target rotate
+            if (currentY < border) {
+                // If currentX is out of bounds
+                swapOrientation();
+                // Rollback currentX
+                currentY -= dy;
+                // Flip X
+                currentX = x - (currentX - x);
+                // Rotate Down
+                turnDown();
+                return next();
+            } else if (currentX == targetX && currentY == targetY) {
+                turnRight();
             }
         }
 
@@ -68,6 +126,7 @@ public class SpiralIndexIterator extends MatrixIndexIterator {
     }
 
     private void turnRight() {
+        dir = DIRECTION_RIGHT;
         if (orientationHorizontal) {
             size++;
         }
@@ -78,6 +137,7 @@ public class SpiralIndexIterator extends MatrixIndexIterator {
     }
 
     private void turnLeft() {
+        dir = DIRECTION_LEFT;
         if (orientationHorizontal) {
             size++;
         }
@@ -87,6 +147,7 @@ public class SpiralIndexIterator extends MatrixIndexIterator {
     }
 
     private void turnDown() {
+        dir = DIRECTION_DOWN;
         if (!orientationHorizontal) {
             size++;
         }
@@ -96,12 +157,17 @@ public class SpiralIndexIterator extends MatrixIndexIterator {
     }
 
     private void turnUp() {
+        dir = DIRECTION_UP;
         if (!orientationHorizontal) {
             size++;
         }
         dx = 0;
         dy = -step;
         targetY = currentY - size * step;
+    }
+
+    private void swapOrientation() {
+        orientationHorizontal = !orientationHorizontal;
     }
 
 }

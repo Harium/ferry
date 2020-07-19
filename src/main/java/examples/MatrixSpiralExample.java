@@ -19,7 +19,8 @@ public class MatrixSpiralExample {
         matrix[2][1] = 8;
         matrix[2][2] = 9;
 
-        MatrixIterable<Integer> iterable = new SpiralIterable<>(matrix);
+        SpiralIterable<Integer> iterable = new SpiralIterable<>(matrix);
+        //iterable.setX(2);
         for (Integer i : iterable) {
             System.out.println(i);
         }

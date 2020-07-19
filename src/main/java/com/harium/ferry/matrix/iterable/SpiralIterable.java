@@ -12,4 +12,12 @@ public class SpiralIterable<T> extends MatrixIterable<T> {
         indexIterator.setX(indexIterator.getWidth() / 2);
         indexIterator.setY(indexIterator.getHeight() / 2);
     }
+
+    public void setX(int x) {
+        indexIterator.setX(x);
+    }
+
+    public void setY(int y) {
+        indexIterator.setY(y);
+    }
 }
