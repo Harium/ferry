@@ -2,8 +2,6 @@ package examples;
 
 import com.harium.ferry.matrix.iterable.MatrixIterable;
 import com.harium.ferry.matrix.iterable.SpiralIterable;
-import com.harium.ferry.matrix.iterable.TopLeftToBottomRightIterable;
-import com.harium.ferry.matrix.iterable.TopRightToBottomLeftIterable;
 
 public class MatrixSpiralExample {
 

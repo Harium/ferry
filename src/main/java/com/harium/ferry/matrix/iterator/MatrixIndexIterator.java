@@ -1,8 +1,6 @@
 package com.harium.ferry.matrix.iterator;
 
-import java.util.Iterator;
-
-public abstract class MatrixIndexIterator implements Iterator<Integer> {
+public abstract class MatrixIndexIterator implements IndexIterator {
 
     protected int x = 0;
     protected int y = 0;

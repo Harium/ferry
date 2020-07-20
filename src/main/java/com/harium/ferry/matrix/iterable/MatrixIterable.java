@@ -1,13 +1,14 @@
 package com.harium.ferry.matrix.iterable;
 
-import com.harium.ferry.matrix.iterator.MatrixIndexIterator;
+import com.harium.ferry.matrix.iterator.IndexIterator;
 
 import java.util.Iterator;
 
 public abstract class MatrixIterable<T> implements Iterable<T> {
 
-    private T[][] data;
-    protected MatrixIndexIterator indexIterator;
+    protected int width;
+    protected T[][] data;
+    protected IndexIterator indexIterator;
 
     public MatrixIterable(T[][] data) {
         this.data = data;
@@ -24,8 +25,8 @@ public abstract class MatrixIterable<T> implements Iterable<T> {
             @Override
             public T next() {
                 int index = indexIterator.next();
-                int i = index % indexIterator.getWidth();
-                int j = index / indexIterator.getWidth();
+                int i = index % width;
+                int j = index / width;
                 return data[j][i];
             }
         };
