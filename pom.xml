@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.harium</groupId>
     <artifactId>ferry</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
     <name>Ferry</name>
-    <description>A bunch of Java iterators to traverse data structures</description>
+    <description>A collection of Java iterators to traverse data structures</description>
     <url>http://github.com/harium/ferry</url>
     <scm>
         <connection>scm:git:git://github.com/harium/ferry.git</connection>
