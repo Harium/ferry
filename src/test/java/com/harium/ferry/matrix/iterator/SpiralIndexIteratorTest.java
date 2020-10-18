@@ -3,7 +3,7 @@ package com.harium.ferry.matrix.iterator;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.harium.ferry.matrix.iterator.IteratorTestUtil.next;
+import static com.harium.ferry.matrix.iterator.TestUtils.next;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

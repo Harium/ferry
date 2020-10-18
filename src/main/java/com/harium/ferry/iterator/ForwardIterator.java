@@ -1,13 +1,13 @@
-package com.harium.ferry.matrix.iterator;
+package com.harium.ferry.iterator;
 
 public class ForwardIterator implements IndexIterator {
 
-    private int prev;
-    private int start = 0;
-    private int cursor = 0;
-    private int step = 1;
-    private int length = 1;
-    private boolean firstRun = true;
+    protected int prev;
+    protected int start = 0;
+    protected int cursor = 0;
+    protected int step = 1;
+    protected int length = 1;
+    protected boolean firstRun = true;
 
     public ForwardIterator() {
         super();

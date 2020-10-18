@@ -1,4 +1,4 @@
-package com.harium.ferry.matrix.iterator;
+package com.harium.ferry.iterator;
 
 import java.util.Iterator;
 

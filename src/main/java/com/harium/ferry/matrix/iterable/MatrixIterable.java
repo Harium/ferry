@@ -1,6 +1,6 @@
 package com.harium.ferry.matrix.iterable;
 
-import com.harium.ferry.matrix.iterator.IndexIterator;
+import com.harium.ferry.iterator.IndexIterator;
 
 import java.util.Iterator;
 

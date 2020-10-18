@@ -1,4 +1,4 @@
-package com.harium.ferry.matrix.iterator;
+package com.harium.ferry.iterator;
 
 /**
  * Infinity iterator that goes to 0 when reaches the final element
