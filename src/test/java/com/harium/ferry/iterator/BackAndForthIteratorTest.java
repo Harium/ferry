@@ -3,6 +3,9 @@ package com.harium.ferry.iterator;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class BackAndForthIteratorTest {
@@ -74,7 +77,39 @@ public class BackAndForthIteratorTest {
         assertEquals(0, next);
 
         // Should it be circular?
-        //assertFalse(iterator.hasNext());
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    public void testHitLeft() {
+        iterator.setLength(6);
+        iterator.setStep(1);
+        iterator.setStart(1);
+
+        int[] array = getResult();
+        assertArrayEquals(new int[]{1, 2, 0, 3, 4, 5}, array);
+    }
+
+    @Test
+    public void testHitRight() {
+        iterator.setLength(6);
+        iterator.setStep(1);
+        iterator.setStart(4);
+
+        int[] array = getResult();
+        assertArrayEquals(new int[]{4, 5, 3, 2, 1, 0}, array);
+    }
+
+    private int[] getResult() {
+        List<Integer> results = new ArrayList<>();
+        while (iterator.hasNext()) {
+            results.add(iterator.next());
+        }
+        int[] array = new int[results.size()];
+        for (int i = 0; i < results.size(); i++) {
+            array[i] = results.get(i);
+        }
+        return array;
     }
 
 }
