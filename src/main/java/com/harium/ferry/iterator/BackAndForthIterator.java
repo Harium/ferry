@@ -4,12 +4,16 @@ public class BackAndForthIterator extends ForwardIterator {
 
     private static final boolean RIGHT = false;
     private boolean direction = RIGHT;
+    private boolean hitRight = false;
+    private boolean hitLeft = false;
 
     @Override
     public void reset() {
         cursor = start;
         prev = cursor;
         firstRun = true;
+        hitLeft = false;
+        hitRight = false;
 
         direction = RIGHT;
     }
@@ -20,22 +24,14 @@ public class BackAndForthIterator extends ForwardIterator {
             return true;
         }
 
-        int next = cursor;
-
-        // Can be optimized (for sure)
-        // Happy Path
-        // cursor < start && next > start
-        // Modulus
-        // cursor < start && next < cursor
-        if (next == start) {
+        if (hitRight && cursor < 0) {
+            return false;
+        }
+        if (hitLeft && cursor >= length) {
             return false;
         }
 
-        if (direction == RIGHT) {
-            return prev >= start;
-        } else {
-            return prev <= start;
-        }
+        return !hitLeft || !hitRight;
     }
 
     @Override
@@ -50,14 +46,36 @@ public class BackAndForthIterator extends ForwardIterator {
             diff = cursor - start;
             cursor = start - diff;
             cursor += step;
+            direction = !direction;
+
+            if (prev < 0) {
+                hitLeft = true;
+                if (!hitRight) {
+                    prev = next();
+                }
+            }
         } else {
             diff = start - cursor;
             cursor = start + diff;
-            cursor += length;
+
+            direction = !direction;
+
+            if (prev > length - 1) {
+                hitRight = true;
+                if (!hitLeft) {
+                    prev = next();
+                }
+            }
         }
 
-        cursor %= length;
-        direction = !direction;
+        if (!hitLeft && prev == 0) {
+            hitLeft = true;
+        }
+
+        if (!hitRight && prev == length-step) {
+            hitRight = true;
+        }
+
         return prev;
     }
     
