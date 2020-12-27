@@ -4,8 +4,8 @@ import com.harium.ferry.iterator.IndexIterator;
 
 public abstract class MatrixIndexIterator implements IndexIterator {
 
-    protected int x = 0;
-    protected int y = 0;
+    protected int startX = 0;
+    protected int startY = 0;
     protected int step = 1;
     protected int border = 0;
     protected int width = 0;
@@ -15,30 +15,35 @@ public abstract class MatrixIndexIterator implements IndexIterator {
 
     public MatrixIndexIterator() {
         super();
-        currentX = x - step;
-        currentY = y;
-    }
-
-    public void reset() {
-        this.currentX = x - step;
-        this.currentY = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
         reset();
     }
 
-    public int getY() {
-        return y;
+    public MatrixIndexIterator(int width, int height) {
+        this();
+        this.width = width;
+        this.height = height;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void reset() {
+        this.currentX = startX - step;
+        this.currentY = startY;
+    }
+
+    public int getStartX() {
+        return startX;
+    }
+
+    public void setStartX(int startX) {
+        this.startX = startX;
+        reset();
+    }
+
+    public int getStartY() {
+        return startY;
+    }
+
+    public void setStartY(int startY) {
+        this.startY = startY;
         reset();
     }
 
@@ -57,12 +62,22 @@ public abstract class MatrixIndexIterator implements IndexIterator {
 
     public void setBorder(int border) {
         this.border = border;
+
+        final int minX = border;
+        final int maxX = width - 1 - border;
+        final int minY = border;
+        final int maxY = height - 1 - border;
+
         // Force update x, y
-        if (x < border) {
-            x = border;
+        if (startX < minX) {
+            startX = minX;
+        } else if (startX > maxX) {
+            startX = maxX;
         }
-        if (y < border) {
-            y = border;
+        if (startY < minY) {
+            startY = minY;
+        } else if (startY > maxY) {
+            startY = maxY;
         }
         reset();
     }

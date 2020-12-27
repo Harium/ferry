@@ -11,7 +11,7 @@ public class SpiralIterable<T> extends MatrixIterable<T> {
         int height = data.length;
         ((SpiralIndexIterator) indexIterator).setWidth(width);
         ((SpiralIndexIterator) indexIterator).setHeight(height);
-        ((SpiralIndexIterator) indexIterator).setX(width / 2);
-        ((SpiralIndexIterator) indexIterator).setY(height / 2);
+        ((SpiralIndexIterator) indexIterator).setStartX(width / 2);
+        ((SpiralIndexIterator) indexIterator).setStartY(height / 2);
     }
 }

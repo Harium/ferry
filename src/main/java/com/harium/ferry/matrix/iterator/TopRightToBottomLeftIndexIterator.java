@@ -4,8 +4,8 @@ public class TopRightToBottomLeftIndexIterator extends MatrixIndexIterator {
 
     public TopRightToBottomLeftIndexIterator() {
         super();
-        currentX = x + step;
-        currentY = y;
+        currentX = startX + step;
+        currentY = startY;
     }
 
     public TopRightToBottomLeftIndexIterator(int width, int height) {
@@ -15,8 +15,8 @@ public class TopRightToBottomLeftIndexIterator extends MatrixIndexIterator {
 
     @Override
     public void reset() {
-        this.currentX = x + step;
-        this.currentY = y;
+        this.currentX = startX + step;
+        this.currentY = startY;
     }
 
     @Override

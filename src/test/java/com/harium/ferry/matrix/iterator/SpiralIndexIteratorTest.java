@@ -3,7 +3,8 @@ package com.harium.ferry.matrix.iterator;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.harium.ferry.matrix.iterator.TestUtils.next;
+import static com.harium.ferry.TestUtils.assertIndex;
+import static com.harium.ferry.TestUtils.next;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -19,24 +20,20 @@ public class SpiralIndexIteratorTest {
 
     @Test
     public void testHappyPath() {
-        iterator.setX(0);
+        iterator.setStartX(0);
         iterator.setWidth(10);
         iterator.setHeight(10);
 
         assertTrue(iterator.hasNext());
-        int[] next = next(iterator);
-        assertEquals(0, next[0]);
-        assertEquals(0, next[1]);
 
-        next = next(iterator);
-        assertEquals(1, next[0]);
-        assertEquals(0, next[1]);
+        assertIndex(0, 0, next(iterator));
+        assertIndex(1, 0, next(iterator));
     }
 
     @Test
     public void testStartingFromMiddle() {
-        iterator.setX(5);
-        iterator.setY(5);
+        iterator.setStartX(5);
+        iterator.setStartY(5);
         iterator.setWidth(10);
         iterator.setHeight(10);
 
@@ -89,8 +86,8 @@ public class SpiralIndexIteratorTest {
 
     @Test
     public void testStartingFromMiddleWithStep() {
-        iterator.setX(5);
-        iterator.setY(5);
+        iterator.setStartX(5);
+        iterator.setStartY(5);
         iterator.setStep(2);
         iterator.setWidth(10);
         iterator.setHeight(10);
@@ -122,8 +119,8 @@ public class SpiralIndexIteratorTest {
         iterator.setBorder(2);
         iterator.setWidth(7);
         iterator.setHeight(7);
-        iterator.setX(3);
-        iterator.setY(2);
+        iterator.setStartX(3);
+        iterator.setStartY(2);
 
         assertTrue(iterator.hasNext());
         int[] next = next(iterator);
