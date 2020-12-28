@@ -3,7 +3,8 @@ package com.harium.ferry.matrix.iterator;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.harium.ferry.matrix.iterator.TestUtils.next;
+import static com.harium.ferry.TestUtils.assertIndex;
+import static com.harium.ferry.TestUtils.next;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -19,57 +20,41 @@ public class TopRightToBottomLeftIndexIteratorTest {
 
     @Test
     public void testHappyPath() {
-        iterator.setX(9);
+        iterator.setStartX(9);
         iterator.setWidth(10);
         iterator.setHeight(10);
 
         assertTrue(iterator.hasNext());
-        int[] next = next(iterator);
-        assertEquals(9, next[0]);
-        assertEquals(0, next[1]);
 
-        next = next(iterator);
-        assertEquals(8, next[0]);
-        assertEquals(0, next[1]);
+        assertIndex(9, 0, next(iterator));
+        assertIndex(8, 0, next(iterator));
     }
 
     @Test
     public void testStartingFromMiddle() {
-        iterator.setX(5);
-        iterator.setY(5);
+        iterator.setStartX(5);
+        iterator.setStartY(5);
         iterator.setWidth(10);
         iterator.setHeight(10);
 
         assertTrue(iterator.hasNext());
-        int[] next = next(iterator);
-        assertEquals(5, next[0]);
-        assertEquals(5, next[1]);
 
-        next = next(iterator);
-        assertEquals(4, next[0]);
-        assertEquals(5, next[1]);
+        assertIndex(5, 5, next(iterator));
+        assertIndex(4, 5, next(iterator));
     }
 
     @Test
     public void testStartingFromMiddleWithStep() {
-        iterator.setX(5);
-        iterator.setY(5);
+        iterator.setStartX(5);
+        iterator.setStartY(5);
         iterator.setStep(3);
         iterator.setWidth(10);
         iterator.setHeight(10);
 
         assertTrue(iterator.hasNext());
-        int[] next = next(iterator);
-        assertEquals(5, next[0]);
-        assertEquals(5, next[1]);
-
-        next = next(iterator);
-        assertEquals(2, next[0]);
-        assertEquals(5, next[1]);
-
-        next = next(iterator);
-        assertEquals(9, next[0]);
-        assertEquals(5 + iterator.getStep(), next[1]);
+        assertIndex(5, 5, next(iterator));
+        assertIndex(2, 5, next(iterator));
+        assertIndex(9, 5 + iterator.getStep(), next(iterator));
     }
 
     @Test
@@ -77,28 +62,20 @@ public class TopRightToBottomLeftIndexIteratorTest {
         iterator.setBorder(2);
         iterator.setWidth(6);
         iterator.setHeight(6);
-        iterator.setX(3);
-        iterator.setY(2);
+        iterator.setStartX(3);
+        iterator.setStartY(2);
 
         assertTrue(iterator.hasNext());
-        int[] next = next(iterator);
-        assertEquals(3, next[0]);
-        assertEquals(2, next[1]);
+        assertIndex(3, 2, next(iterator));
 
         assertTrue(iterator.hasNext());
-        next = next(iterator);
-        assertEquals(2, next[0]);
-        assertEquals(2, next[1]);
+        assertIndex(2, 2, next(iterator));
 
         assertTrue(iterator.hasNext());
-        next = next(iterator);
-        assertEquals(3, next[0]);
-        assertEquals(3, next[1]);
+        assertIndex(3, 3, next(iterator));
 
         assertTrue(iterator.hasNext());
-        next = next(iterator);
-        assertEquals(2, next[0]);
-        assertEquals(3, next[1]);
+        assertIndex(2, 3, next(iterator));
 
         assertFalse(iterator.hasNext());
     }

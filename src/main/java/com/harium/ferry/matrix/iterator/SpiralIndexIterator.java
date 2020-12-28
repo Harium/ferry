@@ -18,8 +18,8 @@ public class SpiralIndexIterator extends MatrixIndexIterator {
     private int dy = 0;
 
     public SpiralIndexIterator() {
-        this.currentX = x - dx;
-        this.currentY = y;
+        this.currentX = startX - dx;
+        this.currentY = startY;
     }
 
     public SpiralIndexIterator(int width, int height) {
@@ -28,13 +28,13 @@ public class SpiralIndexIterator extends MatrixIndexIterator {
     }
 
     public void reset() {
-        this.currentX = x - step;
-        this.currentY = y;
+        this.currentX = startX - step;
+        this.currentY = startY;
         this.dx = step;
         this.dy = 0;
 
-        this.targetX = x;
-        this.targetY = y;
+        this.targetX = startX;
+        this.targetY = startY;
         this.dir = DIRECTION_UP;
     }
 
